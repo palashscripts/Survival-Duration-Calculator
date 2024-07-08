@@ -1,1 +1,43 @@
+class SurvivalDurationCalculator:
+    def __init__(self, age):
+        self.age = age
+
+    def calculate_duration(self, unit):
+        if unit in ['Months', 'm']:
+            return self.age * 12
+        elif unit in ['Weeks', 'w']:
+            return self.age * 52
+        elif unit in ['Days', 'd']:
+            return self.age * 365
+        elif unit in ['Hours', 'h']:
+            return self.age * 365 * 24
+        elif unit in ['Minutes', 'min']:
+            return self.age * 365 * 24 * 60
+        elif unit in ['Seconds', 's']:
+            return self.age * 365 * 24 * 60 * 60
+        else:
+            return None
+
+def main():
+    try:
+        age = int(input("What's your age? "))
+        print("Please choose time unit: Months, Weeks, Days, Hours, Minutes, Seconds.")
+        print("Note: You can write the first letter or the full name of the time unit.")
+        unit = input().strip()
+
+        calculator = SurvivalDurationCalculator(age)
+        duration = calculator.calculate_duration(unit)
+
+        if duration is not None:
+            unit_full_name = {
+                'm': 'Months', 'w': 'Weeks', 'd': 'Days', 'h': 'Hours', 'min': 'Minutes', 's': 'Seconds'
+            }.get(unit, unit)
+            print(f"You lived for {duration} {unit_full_name}")
+        else:
+            print("Invalid time unit selected.")
+    except ValueError:
+        print("Invalid age input. Please enter a valid number.")
+
+if __name__ == "__main__":
+    main()
 
